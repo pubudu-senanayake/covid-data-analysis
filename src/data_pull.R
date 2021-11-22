@@ -15,7 +15,7 @@ if (Sys.Date() > download_date) {
                             guess_max = 100000)
   
   write_csv(raw_owid_data, "data/owid-covid-data.csv")
-  write_csv(tibble(date = Sys.Date()), "data/download_date.csv")
+  write_csv(tibble(date = Sys.Date()), "flow_control/download_date.csv")
   
 } else {
   message("--- Up to date data already downloaded from OWID ---")
@@ -24,7 +24,7 @@ if (Sys.Date() > download_date) {
 
 # Pull Australian case data from COVID-live ------------------------------------
 
-state_list <- c("vic", "nsw")
+state_list <- c("act", 'qld', "nsw", "vic")
 aus_data <- tibble() # initialize empty data frame
 
 for (state in state_list) {
