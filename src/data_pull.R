@@ -6,7 +6,7 @@ library(ggplot2)
 
 # Check download dates ----------------------------------------------------
 
-download_date <- read_csv("data/download_date.csv")$date
+download_date <- read_csv("flow_control/download_date.csv")$date
 
 
 # Pull OWID data ----------------------------------------------------------
