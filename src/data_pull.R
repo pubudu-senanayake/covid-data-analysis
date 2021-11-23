@@ -72,4 +72,7 @@ for (state in state_list) {
   
 }
 
+aus_data <- 
+  aus_data %>% mutate(as_at = Sys.Date())
 
+write_csv(aus_data, sprintf("data_push/aus_data.csv"))
