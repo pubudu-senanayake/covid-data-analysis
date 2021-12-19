@@ -22,7 +22,7 @@ if (Sys.Date() > download_date) {
 }
 
 
-# Pull Australian case data from COVID-live ------------------------------------
+# Pull Australian data from COVID-live ------------------------------------
 
 state_list <- c("act", 'qld', "nsw", "vic")
 aus_data <- tibble() # initialize empty data frame
