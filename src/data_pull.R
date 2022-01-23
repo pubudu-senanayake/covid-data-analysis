@@ -3,6 +3,7 @@ library(tidyverse)
 library(rvest)
 library(zoo)
 library(ggplot2)
+library(lubridate)
 
 # Check download dates ----------------------------------------------------
 
@@ -24,7 +25,7 @@ if (Sys.Date() > download_date) {
 
 # Pull Australian data from COVID-live ------------------------------------
 
-state_list <- c("act", 'qld', "nsw", "vic")
+state_list <- c("act", 'qld', "nsw", "vic", "tas")
 aus_data <- tibble() # initialize empty data frames
 aus_vac_data <- tibble()
 #state_list <- "vic" ## Use this for testing a single state in the loop below
@@ -101,7 +102,8 @@ aus_data <-
   aus_data %>% 
   arrange(state, date) %>% 
   group_by(state) %>% 
-  mutate(active_cases = rollapply(data = new_cases, width = 14, sum, fill = NA, align = "right")) %>% 
+  mutate(active_cases = rollapply(data = new_cases, width = 14, sum, fill = NA, align = "right"),
+         smooth_cases = rollapply(data = new_cases, width = 5, mean, fill = NA, align = "right")) %>% 
   mutate(hosp_ratio = hosp/active_cases) %>% 
   ungroup() %>% 
   mutate(date = as.Date(date),
@@ -127,3 +129,4 @@ bpm_raw <- readxl::read_xlsx("data/BPM_results_trafficlight_28-Nov-2021_with_act
 # Pull in r_eff data for Victoria -----------------------------------------
 
 vic_reff_raw <- read_csv("data/vic_reff.csv") ## data downloaded from https://www.covid19data.com.au/
+0
