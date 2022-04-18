@@ -88,7 +88,7 @@ for (state in state_list) {
     mutate(date = DATE,
            state = state,
            second_doses = as.numeric(gsub(",", "",SECOND)),
-           full_per = as.numeric(gsub("%","",`12+`)), 
+           full_per = as.numeric(gsub("%","",`5+`)),  ## COVID live has changed table to 5+ for vacc (from 12+)
            change = as.numeric(NET)) %>% 
     select(date, state, second_doses, full_per, change) %>% 
     mutate(date = strptime(date, format = "%d %b %y"))
