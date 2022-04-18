@@ -25,7 +25,7 @@ if (Sys.Date() > download_date) {
 
 # Pull Australian data from COVID-live ------------------------------------
 
-state_list <- c("act", 'qld', "nsw", "vic", "tas")
+state_list <- c("act", 'qld', "nsw", "vic", "sa", "tas")
 aus_data <- tibble() # initialize empty data frames
 aus_vac_data <- tibble()
 #state_list <- "vic" ## Use this for testing a single state in the loop below
@@ -115,6 +115,11 @@ aus_vac_data <-
          as_at = Sys.Date()) %>% 
   arrange(date)
 
+aus_data_wide <-
+  aus_data %>% 
+  select(date, state, new_cases) %>% 
+  pivot_wider(names_from = state, values_from = new_cases)
+
 
 write_csv(aus_data, sprintf("data_push/aus_data.csv"))
 write_csv(aus_vac_data, sprintf("data_push/aus_vac_data.csv"))
@@ -129,4 +134,6 @@ bpm_raw <- readxl::read_xlsx("data/BPM_results_trafficlight_28-Nov-2021_with_act
 # Pull in r_eff data for Victoria -----------------------------------------
 
 vic_reff_raw <- read_csv("data/vic_reff.csv") ## data downloaded from https://www.covid19data.com.au/
-0
+
+
+nz_cov <- read_html("https://www.rnz.co.nz/news/in-depth/450874/covid-19-data-visualisations-nz-in-numbers")
