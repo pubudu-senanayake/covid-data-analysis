@@ -9,7 +9,7 @@ library(ggplot2)
 # Read in data ------------------------------------------------------------
 
 global_data_raw <-
-  read_csv("data/owid-covid-data.csv", guess_max = 250000)
+  read_csv("data/owid-covid-data.csv", guess_max = 200000)
 
 country <- "New Zealand"
 initial_detection <- as.Date("2021-04-20")
