@@ -1,8 +1,8 @@
 
 # Shape data for international comparisons --------------------------------
 
-select_state <- "vic"
-state_name <- "Victoria"
+select_state <- "nsw"
+state_name <- "NSW"
 
 # Australian data - Vic ---------------------------------------------------
 
